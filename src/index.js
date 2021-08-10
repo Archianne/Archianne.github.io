@@ -1,17 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { StrictMode, Suspense, lazy } from "react";
+import ReactDOM from "react-dom";
+import { HashRouter } from "react-router-dom";
+import Loader from "react-loader-spinner";
+const App = lazy(() => import ("./App.jsx"));
+
+const root = document.getElementById("root");
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <StrictMode>
+    <HashRouter>
+      <Suspense
+        fallback={
+          <div id="fallback">
+            <Loader type="TailSpin" color="#00BFFF" height={80} width={80} />
+          </div>
+        }
+      >
+        <App />
+      </Suspense>
+    </HashRouter>
+  </StrictMode>,
+  root
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
