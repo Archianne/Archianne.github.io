@@ -1,12 +1,12 @@
 import { Suspense } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import useFetch from "../components/_Hooks/useFetch";
-import Image from "../components/_Styled/img";
-import Line from "../components/_Styled/line";
+// import { Link } from "react-router-dom";
+// import Image from "../components/_Styled/img";
+// import Line from "../components/_Styled/line";
 
 const Blog = () => {
-  const URL = `https://dev.to/api/articles?username=archianne`;
+  const URL = `https://api.github.com/users/Archianne/gists`;
   const [value] = useFetch(URL);
   console.log(value);
   const mapValues =
@@ -14,44 +14,45 @@ const Blog = () => {
     value.slice(0, 10).map((item) => {
       return (
         <List key={item.id}>
-          <Image
-            src={
-              item.cover_image ||
-              "https://ddvql06zg3s2o.cloudfront.net/Assets/res/p/2781/imgs/M_loading.gif"
-            }
-            alt={item.id}
-          />
-          <h2>{item.title}</h2>
-          <p>{item.description}</p>
-
-          <Line />
-          <Link
-            to={{
-              pathname: `/post/${item.slug}/${item.id}`
-            }}
-            replace
-          >
-            See more
-          </Link>
+          <h2>{item.description}</h2>
+          <p>{}</p>
         </List>
+        //   <Image
+        //     src={
+        //       item.cover_image ||
+        //       "https://ddvql06zg3s2o.cloudfront.net/Assets/res/p/2781/imgs/M_loading.gif"
+        //     }
+        //     alt={item.id}
+        //   />
+        //   <h2>{item.title}</h2>
+        //   <p>{item.description}</p>
+
+        //   <Line />
+        //   <Link
+        //     to={{
+        //       pathname: `/post/${item.slug}/${item.id}`
+        //     }}
+        //     replace
+        //   >
+        //     See more
+        //   </Link>
       );
     });
 
   return (
-    <StyledRepo>
+    <StyledBlog>
       <Suspense fallback={<div>Loading</div>}>{mapValues}</Suspense>
-    </StyledRepo>
+    </StyledBlog>
   );
 };
 
 export default Blog;
 
-const StyledRepo = styled.ul`
+const StyledBlog = styled.ul`
   display: flex;
   flex-flow: row wrap;
-  width: 100%;
-  flex-basis: auto;
-  justify-content: space-around;
+  width: 70%;
+  margin: 0 auto;
 
   a {
     color: ${(props) => props.theme.active};
@@ -65,9 +66,6 @@ const List = styled.li`
   list-style-type: none;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
   min-width: 150px;
   width: 45%;
   margin: 5px 10px;

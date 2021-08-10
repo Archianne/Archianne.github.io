@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import styled from "styled-components";
+import usePath from "../components/_Hooks/usePath";
 
 const Home = () => {
   const TxtRotate = function (element, toRotate, period) {
@@ -13,8 +14,8 @@ const Home = () => {
   };
 
   TxtRotate.prototype.tick = function () {
-    var i = this.loopNum % this.toRotate.length;
-    var fullTxt = this.toRotate[i];
+    const i = this.loopNum % this.toRotate.length;
+    const fullTxt = this.toRotate[i];
 
     if (this.isDeleting) {
       this.txt = fullTxt.substring(0, this.txt.length - 1);
@@ -24,8 +25,8 @@ const Home = () => {
 
     this.element.innerHTML = '<span class="wrap">' + this.txt + "</span>";
 
-    var that = this;
-    var delta = 300 - Math.random() * 100;
+    const that = this;
+    let delta = 300 - Math.random() * 100;
 
     if (this.isDeleting) {
       delta /= 2;
@@ -45,11 +46,11 @@ const Home = () => {
     }, delta);
   };
 
-  window.onload = function () {
-    var elements = document.getElementsByClassName("txt-rotate");
-    for (var i = 0; i < elements.length; i++) {
-      var toRotate = elements[i].getAttribute("data-rotate");
-      var period = elements[i].getAttribute("data-period");
+window.onload = () => {
+  const elements = document.getElementsByClassName("txt-rotate");
+    for (let i = 0; i < elements.length; i++) {
+      const toRotate = elements[i].getAttribute("data-rotate");
+      const period = elements[i].getAttribute("data-period");
       if (toRotate) {
         new TxtRotate(elements[i], JSON.parse(toRotate), period);
       }
@@ -62,7 +63,7 @@ const Home = () => {
         <h1>
           Hello{" "}
           <span
-            class="txt-rotate"
+            className="txt-rotate"
             data-period="2000"
             data-rotate='[ "World", "JS", "React", "You!" ]'
           ></span>
@@ -76,9 +77,11 @@ export default Home;
 
 const StyledHome = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-flow: row wrap;
   justify-content: center;
-  align-items: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
 
   h1 {
     :before {
