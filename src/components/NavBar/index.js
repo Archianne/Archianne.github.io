@@ -1,8 +1,11 @@
+import { useState } from "react";
 import styled from "styled-components";
 import Icons from "../../theme/icons";
 import Link from "../_Styled/link";
+import Toggle from "../_Styled/toggle";
 
 const NavBar = (props) => {
+  const [isOn, setIsOn] = useState(false);
   const tabs = [
     {
       title: "Home",
@@ -29,7 +32,7 @@ const NavBar = (props) => {
   return (
     <StyledNavBar>
       <Icons.Menu className="menu-icon" />
-      <Icons.Archer className="logo-icon" onClick={props.changeTheme} />
+      <Icons.Archer className="logo-icon" />
       <FlexDiv>
         {tabs.map((tab, index) => {
           return (
@@ -38,6 +41,13 @@ const NavBar = (props) => {
             </Link>
           );
         })}
+        <Toggle
+          isOn={isOn}
+          handleToggle={() => {
+            props.changeTheme();
+            setIsOn(!isOn);
+          }}
+        />
       </FlexDiv>
     </StyledNavBar>
   );
@@ -57,6 +67,12 @@ const StyledNavBar = styled.nav`
   color: ${(props) => props.theme.navFontColor};
   @media (max-width: 768px) {
     padding: 16px 16px;
+  }
+
+  #toggle {
+    @media (min-width: 768px) {
+      margin-top: -15px;
+    }
   }
 
   a {
