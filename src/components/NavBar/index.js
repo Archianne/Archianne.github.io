@@ -71,7 +71,7 @@ const StyledNavBar = styled.nav`
 
   #toggle {
     @media (min-width: 768px) {
-      margin-top: -15px;
+      margin-top: -18px;
     }
   }
 
