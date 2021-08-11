@@ -32,7 +32,9 @@ const NavBar = (props) => {
   return (
     <StyledNavBar>
       <Icons.Menu className="menu-icon" />
-      <Icons.Archer className="logo-icon" />
+      <Link href={"/#/"}>
+        <Icons.Archer className="logo-icon" />
+      </Link>
       <FlexDiv>
         {tabs.map((tab, index) => {
           return (

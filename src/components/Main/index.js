@@ -17,7 +17,7 @@ const Main = () => {
 export default Main;
 
 const StyledMain = styled.main`
-  height: 90vh;
+  height: 80vh;
   width: 100%;
   margin-top: 25px;
 
