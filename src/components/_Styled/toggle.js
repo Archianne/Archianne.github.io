@@ -9,7 +9,7 @@ const Toggle = ({ isOn, handleToggle }) => {
         id={`switch`}
         type="checkbox"
       />
-      <label style={{ background: isOn && "#06D6A0" }} htmlFor={`switch`}>
+      <label htmlFor={`switch`}>
         <span />
       </label>
     </StyledToggle>
