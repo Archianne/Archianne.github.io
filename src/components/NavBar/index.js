@@ -1,11 +1,11 @@
-import { useState } from "react";
+import useLocalStorage from "../_Hooks/useLocalStorage";
 import styled from "styled-components";
 import Icons from "../../theme/icons";
 import Link from "../_Styled/link";
 import Toggle from "../_Styled/toggle";
 
 const NavBar = (props) => {
-  const [isOn, setIsOn] = useState(false);
+  const [isOn, setIsOn] = useLocalStorage("isOn", false);
   const tabs = [
     {
       title: "Home",
