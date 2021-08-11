@@ -7,16 +7,16 @@ const Home = () => {
     <StyledHome>
       <Suspense fallback={<div>Loading</div>}>
         <TypeWriterEffect
-          startDelay={2000}
-          cursorColor="#3F3D56"
           multiText={[
             "<h1> Hello World </h1>",
-            "Front-end developer",
-            "Archianne",
+            "<div> Archianne </div>",
+            "<p> Front-end developer </p>",
             "<h1> Hello World </h1>",
           ]}
-          multiTextDelay={0}
-          typeSpeed={30}
+          cursorColor="#3F3D56"
+          startDelay={500}
+          multiTextDelay={1000}
+          typeSpeed={70}
         />
       </Suspense>
     </StyledHome>

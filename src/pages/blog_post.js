@@ -1,19 +1,21 @@
-import { Markup } from "interweave";
-import { Suspense } from "react";
+import Markdown from "markdown-to-jsx";
+import { Suspense, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import useFetch from "../components/_Hooks/useFetch";
 
 const BlogPost = ({ match }) => {
+  const [data, setData] = useState("");
   var slug = match.params.slug;
-  const path = window.location.hash;
-  const lastItem = path.substring(path.lastIndexOf("/") + 1);
   console.log(slug);
-  console.log(lastItem);
 
-  const URL = `https://dev.to/api/articles/${lastItem}`;
-  const [value] = useFetch(URL);
-  console.log(value);
+  (async () => {
+    const response = await fetch(
+      `https://gist.githubusercontent.com/Archianne/${slug}/raw/`
+    );
+    const data = await response.text();
+    console.log(data);
+    setData(data);
+  })();
 
   return (
     <StyledPosts>
@@ -21,8 +23,7 @@ const BlogPost = ({ match }) => {
         <div id="return">
           <Link to="/blog">Return</Link>
         </div>
-        <h1 id="title">{value.title}</h1>
-        <Markup content={value.body_html} />
+        <Markdown>{data}</Markdown>
       </Suspense>
     </StyledPosts>
   );
@@ -31,6 +32,9 @@ const BlogPost = ({ match }) => {
 export default BlogPost;
 
 const StyledPosts = styled.article`
+  width: 70vw;
+  max-width: 800px;
+  margin: 0 auto;
   overflow-x: hidden;
 
   #return {
@@ -46,10 +50,13 @@ const StyledPosts = styled.article`
       ${(props) => props.theme.fontColor1} 0px 1px 0px inset;
   }
 
-  img {
-    width: 100%;
-    margin: 30px 0;
-    box-shadow: ${(props) => props.theme.fontColor1} 0px 1px 4px;
+  p {
+      margin: 30px 0;
+    img {
+      width: 100%;
+      margin: 0;
+      box-shadow: ${(props) => props.theme.fontColor1} 0px 1px 4px;
+    }
   }
 
   a {

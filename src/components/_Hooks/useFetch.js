@@ -9,7 +9,10 @@ const useFetch = (URL) => {
       headers: { Accept: "application/json" },
     })
       .then((res) => res.json())
-      .then((data) => setValue(data))
+      .then((data) => {
+        console.log(data);
+        setValue(data);
+      })
       .catch((err) => setError(err));
   }, [URL]);
 

@@ -7,7 +7,7 @@ const Main = lazy(() => import("./components/Main"));
 const GlobalStyle = lazy(() => import("./theme/globalStyle"));
 
 const App = () => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
   const changeTheme = () => {
     theme === "dark" ? setTheme("light") : setTheme("dark");
   };

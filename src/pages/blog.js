@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import styled from "styled-components";
 import useFetch from "../components/_Hooks/useFetch";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import Image from "../components/_Styled/img";
 // import Line from "../components/_Styled/line";
 
@@ -12,30 +12,19 @@ const Blog = () => {
   const mapValues =
     Array.isArray(value) &&
     value.slice(0, 10).map((item) => {
+      
       return (
         <List key={item.id}>
           <h2>{item.description}</h2>
-          <p>{}</p>
+          <Link
+            to={{
+              pathname: `/post/${item.id}`,
+            }}
+            replace
+          >
+            See more
+          </Link>
         </List>
-        //   <Image
-        //     src={
-        //       item.cover_image ||
-        //       "https://ddvql06zg3s2o.cloudfront.net/Assets/res/p/2781/imgs/M_loading.gif"
-        //     }
-        //     alt={item.id}
-        //   />
-        //   <h2>{item.title}</h2>
-        //   <p>{item.description}</p>
-
-        //   <Line />
-        //   <Link
-        //     to={{
-        //       pathname: `/post/${item.slug}/${item.id}`
-        //     }}
-        //     replace
-        //   >
-        //     See more
-        //   </Link>
       );
     });
 
