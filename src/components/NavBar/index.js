@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Icons from "../../theme/icons";
 import Link from "../_Styled/link";
 import Toggle from "../_Styled/toggle";
+import DropdownMenu from "../_Styled/dropdown";
 
 const NavBar = (props) => {
   const [isOn, setIsOn] = useLocalStorage("isOn", false);
@@ -31,7 +32,7 @@ const NavBar = (props) => {
 
   return (
     <StyledNavBar>
-      <Icons.Menu className="menu-icon" />
+      <DropdownMenu />
       <Link href={"/#/"}>
         <Icons.Archer className="logo-icon" />
       </Link>
@@ -72,9 +73,7 @@ const StyledNavBar = styled.nav`
   }
 
   #toggle {
-    @media (min-width: 768px) {
       margin-top: -18px;
-    }
   }
 
   a {
@@ -87,14 +86,6 @@ const StyledNavBar = styled.nav`
     height: auto;
     cursor: pointer;
   }
-
-  .menu-icon {
-    width: 24px;
-    height: 24px;
-    @media (min-width: 768px) {
-      display: none;
-    }
-  }
 `;
 
 const FlexDiv = styled.div`
@@ -102,37 +93,8 @@ const FlexDiv = styled.div`
   flex-direction: row;
   align-items: center;
   @media (max-width: 768px) {
-    .arrow-icon,
-    .plus-icon,
-    img,
-    a,
-    input {
+    a {
       display: none;
     }
-  }
-
-  .arrow-icon {
-    width: 10px;
-    height: 10px;
-    margin-right: 16px;
-    margin-left: 3px;
-  }
-
-  .bell-icon {
-    margin-right: 16px;
-    width: 16px;
-    height: 16px;
-    @media (max-width: 768px) {
-      margin: 0;
-    }
-  }
-
-  .plus-icon {
-    width: 20px;
-    height: 20px;
-  }
-
-  img {
-    width: 20px;
   }
 `;

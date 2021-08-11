@@ -1,5 +1,5 @@
 const LightTheme = {
-  bg: "#ffffff",
+  bg: "#f5f5f5",
   boxBorder: "#E1E4E8",
   line: "#EBEDEF",
   fontColor1: "#24292E",
@@ -30,7 +30,7 @@ const LightTheme = {
 const DarkTheme = {
   bg: "#0D1117",
   boxBorder: "#30363D",
-  lines: "#21262D",
+  line: "#21262D",
   fontColor1: "#C9D1D9",
   fontColor2: "#808892",
 
