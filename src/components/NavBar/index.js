@@ -73,7 +73,8 @@ const StyledNavBar = styled.nav`
   }
 
   #toggle {
-      margin-top: -18px;
+    margin-top: -18px;
+    width: 50px;
   }
 
   a {

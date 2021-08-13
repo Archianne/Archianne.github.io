@@ -52,9 +52,7 @@ const DropdownMenu = () => {
 
   return (
     <StyledDropdown>
-      <button onClick={onClick} className="menu-trigger">
-        <Icons.Menu />
-      </button>
+      <Icons.Menu onClick={onClick} className="menu-trigger" />
       <nav
         ref={dropdownRef}
         className={`menu ${isActive ? "active" : "inactive"}`}
@@ -78,52 +76,53 @@ const DropdownMenu = () => {
 export default DropdownMenu;
 
 const StyledDropdown = styled.div`
-  @media (min-width: 768px) {
-    display: none;
-  }
+  display: none;
+  @media (max-width: 768px) {
+    .menu {
+      background: ${(props) => props.theme.bg};
+      border-radius: 8px;
+      position: absolute;
+      top: 60px;
+      width: 50vw;
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-20px);
+      transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+    }
 
-  .menu {
-    background: ${(props) => props.theme.bg};
-    border-radius: 8px;
-    position: absolute;
-    top: 60px;
-    width: 50vw;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(-20px);
-    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-  }
+    .menu.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
 
-  .menu.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
+    .menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-  .menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+    .menu li {
+      border-bottom: 1px solid ${(props) => props.theme.line};
+      :last-child {
+        border: none;
+      }
+      a {
+        text-decoration: none;
+        color: ${(props) => props.theme.fontColor1};
+        padding: 15px 20px;
+        display: block;
+      }
+    }
 
-  .menu li {
-    border-bottom: 1px solid ${(props) => props.theme.line};
-    :last-child {
+    .menu-trigger {
+      background: transparent;
+      color: #f5f5f5;
+      cursor: pointer;
       border: none;
+      width: 50px;
+      height: 25px;
     }
-    a {
-      text-decoration: none;
-      color: ${(props) => props.theme.fontColor1};
-      padding: 15px 20px;
-      display: block;
-    }
-  }
-
-  .menu-trigger {
-    background: transparent;
-    color: #f5f5f5;
-    cursor: pointer;
-    border: none;
   }
 `;
