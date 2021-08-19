@@ -33,7 +33,7 @@ const NavBar = (props) => {
   return (
     <StyledNavBar>
       <DropdownMenu />
-      <Link href={"/#/"}>
+      <Link href={"/#/"} aria-label="Home">
         <Icons.Archer className="logo-icon" />
       </Link>
       <FlexDiv>
