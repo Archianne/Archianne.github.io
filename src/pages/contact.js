@@ -312,13 +312,13 @@ const StyledContact = styled.div`
     }
 
     .form-submitted {
-      background-color: #f5f5f5;
+      background-color: ${(props) => props.theme.bg2};
       color: green;
       border: 1px solid green;
     }
 
     .form-not-submitted {
-      background-color: #f5f5f5;
+      background-color: ${(props) => props.theme.bg2};
       color: red;
       border: 1px solid red;
     }
