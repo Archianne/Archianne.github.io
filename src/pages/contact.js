@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Contact = () => {
   const FORM_ACTION =
-    "https://docs.google.com/forms/u/0/d/e/1FAIpQLScchpAuDhGZZypEvia_7Vrvvilve2Lmw39gi5I6kza3RREtPw/formResponse";
+    "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdFoVEGpCyLlGGoJjt3abx9VV9y8nyF8sQF2GKvgD37FDfjyQ/formResponse";
   const [name, setName] = useState("");
   const [telephone, setTelephone] = useState("");
   const [email, setEmail] = useState("");
@@ -81,13 +81,11 @@ const Contact = () => {
 
   const validateForm = () => {
     if (!validateName() || !validatePhone() || !validateEmail()) {
-      setSubmitted(false);
       setFormSubmitted(
         <p className="form-not-submitted">❌ Form not submitted</p>
       );
       return false;
     } else {
-      setSubmitted(true);
       setFormSubmitted(<p className="form-submitted">✔️ Form submitted</p>);
       return true;
     }
@@ -99,7 +97,10 @@ const Contact = () => {
       setTelephone("");
       setEmail("");
       setMessage("");
-      setSubmitted(false);
+      const { msgSent } = setTimeout(() => setFormSubmitted(""), 5000);
+      return () => {
+        clearTimeout(msgSent);
+      };
     } else {
       const { msgSent } = setTimeout(() => setFormSubmitted(""), 5000);
       return () => {
@@ -122,8 +123,11 @@ const Contact = () => {
           action={FORM_ACTION}
           method="post"
           target="hidden_iframe"
-          onSubmit={() => {
+          onSubmit={(e) => {
             validateForm();
+            if (!validateForm()) {
+              e.preventDefault();
+            }
           }}
         >
           {info.map((input) => {
