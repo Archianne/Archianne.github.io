@@ -24,13 +24,14 @@ const StyledButton = styled.button`
 
   &&:hover {
     background-color: ${(props) => props.theme.buttonBgHover};
-    border: 1px solid $((props) => props.theme.buttonBorderHover);
+    border: 1px solid ${(props) => props.theme.buttonBorderHover};
   }
 
   @media (max-width: 768px) {
     max-width: 90vw;
     height: 30px;
   }
+
 `;
 
 export default Button;

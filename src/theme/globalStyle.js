@@ -5,6 +5,8 @@ const GlobalStyle = createGlobalStyle`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  user-select: none;
+  -webkit-touch-callout: none;
   }
 
 body {
@@ -33,7 +35,7 @@ html::-webkit-scrollbar-thumb {
 }
 
 @media (max-width: 768px) {
-  html:-webkit-scrollbar {
+  html::-webkit-scrollbar {
   scrollbar-width: none;  
   display: none;
   }
